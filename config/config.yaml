@@ -1,0 +1,12 @@
+host: ""
+user:
+  name: ""
+  password: ""
+board:  
+  id:
+  name_template: ""
+swimline:
+  id:
+  filter_template: ""
+label_template: ""
+issues_status_mapping:
