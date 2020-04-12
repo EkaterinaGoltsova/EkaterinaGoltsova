@@ -1,2 +1,3 @@
-sprint-starter
+vendor/
 .idea
+.out/

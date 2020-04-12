@@ -5,7 +5,8 @@ import (
 	"html/template"
 	"net/http"
 	"strconv"
-	"./jira"
+
+	"github.com/EkaterinaGoltsova/sprint-starter/jira"
 )
 
 type result struct {
