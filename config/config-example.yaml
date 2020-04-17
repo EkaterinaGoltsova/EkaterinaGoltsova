@@ -1,0 +1,14 @@
+host: "http://jira.ru/" 
+user:
+  name: "user"
+  password: "12345"
+board:  
+  id: 123
+  name_template: "Board - sprint #SPRINT_NUMBER#"
+swimline:
+  id: 123
+  filter_template: "labels in (sprint-#SPRINT_NUMBER#) ORDER BY \"Sprint priority\""
+label_template: "sprint-#SPRINT_NUMBER#"  
+issues_status_mapping:
+    "35": "645" # проанализирована => в беклог
+    "65": "45" # ready to dev => в беклог
