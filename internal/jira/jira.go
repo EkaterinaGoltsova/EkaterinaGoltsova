@@ -7,7 +7,8 @@ import (
 	"github.com/pkg/errors"
 )
 
-const ConfigPath = "config/config.yaml"
+//ConfigPath is path for app config
+const ConfigPath = "configs/config.yaml"
 
 type editBoardNameRequestParams struct {
 	ID   int    `json:"id"`
@@ -19,6 +20,7 @@ type editBoardFilterRequestParams struct {
 	Query string `json:"query"`
 }
 
+//StartSprint is a pipelint finction for start of a sprint
 func StartSprint(config Config, sprintNumber int) error {
 	jiraClient, err := createJiraClient(config)
 	if err != nil {

@@ -1,20 +1,22 @@
-package main
+package web
 
 import (
 	"fmt"
 	"net/http"
 	"strconv"
 
-	"github.com/EkaterinaGoltsova/sprint-starter/jira"
+	"github.com/EkaterinaGoltsova/sprint-starter/internal/jira"
 
 	"github.com/gin-gonic/gin"
 )
 
-func getForm(context *gin.Context) {
+//GetForm is Handler for method GET
+func GetForm(context *gin.Context) {
 	context.HTML(http.StatusOK, "form.html", gin.H{})
 }
 
-func postForm(context *gin.Context) {
+//PostForm is Handler for method POST
+func PostForm(context *gin.Context) {
 	sprintNumber, err := strconv.Atoi(context.PostForm("sprint_number"))
 	if err != nil {
 		context.JSON(http.StatusBadRequest, getErrorResponse(err))

@@ -1,4 +1,5 @@
 vendor/
 .idea
 .out/
-config/config.yaml
+configs/config.yaml
+sprint-starter
