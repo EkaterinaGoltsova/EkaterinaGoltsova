@@ -9,6 +9,7 @@ import (
 	"github.com/spf13/viper"
 )
 
+// Config struct
 type Config struct {
 	Host                string
 	User                user
@@ -35,6 +36,7 @@ type swimline struct {
 
 const sprintNumberPlaceholder = "#SPRINT_NUMBER#"
 
+//InitConfig method
 func (config *Config) InitConfig(path string) error {
 	viper.SetConfigFile(path)
 	err := viper.ReadInConfig()
@@ -50,14 +52,17 @@ func (config *Config) InitConfig(path string) error {
 	return nil
 }
 
+//GetSprintLabel method
 func (config *Config) GetSprintLabel(sprintNumber int) string {
 	return replaceSprintNumberPlaceholder(config.LabelTemplate, sprintNumber)
 }
 
+//GetBoardName method
 func (config *Config) GetBoardName(sprintNumber int) string {
 	return replaceSprintNumberPlaceholder(config.Board.NameTemplate, sprintNumber)
 }
 
+//GetSwimlineFilter method
 func (config *Config) GetSwimlineFilter(sprintNumber int) string {
 	return replaceSprintNumberPlaceholder(config.Swimline.FilterTemplate, sprintNumber)
 }
