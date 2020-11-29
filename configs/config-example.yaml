@@ -8,7 +8,10 @@ board:
 swimline:
   id: 123
   filter_template: "labels in (sprint-#SPRINT_NUMBER#) ORDER BY \"Sprint priority\""
+subfilter:
+  section: "board.work"
+  query_template: "((status != Завершена and status != Закрыта) or (status in (Завершена, Закрыта) and labels=#SPRINT_NUMBER#-rc-sprint))"    
 label_template: "sprint-#SPRINT_NUMBER#"  
-issues_status_mapping:
-    "35": "645" # проанализирована => в беклог
-    "65": "45" # ready to dev => в беклог
+sprint_status_id: 12222
+backlog_transition_id: 681
+current_sprint_statuses: 10007,10008,10009,10010

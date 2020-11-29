@@ -11,12 +11,15 @@ import (
 
 // Config struct
 type Config struct {
-	Host                string
-	User                user
-	Board               board
-	Swimline            swimline
-	LabelTemplate       string            `mapstructure:"label_template"`
-	IssuesStatusMapping map[string]string `mapstructure:"issues_status_mapping"`
+	Host                  string
+	User                  user
+	Board                 board
+	Swimline              swimline
+	Subfilter             subfilter
+	LabelTemplate         string `mapstructure:"label_template"`
+	SprintStatusID        int    `mapstructure:"sprint_status_id"`
+	BacklogTransitionID   int    `mapstructure:"backlog_transition_id"`
+	CurrentSprintStatuses string `mapstructure:"current_sprint_statuses"`
 }
 
 type user struct {
@@ -32,6 +35,11 @@ type board struct {
 type swimline struct {
 	ID             int
 	FilterTemplate string `mapstructure:"filter_template"`
+}
+
+type subfilter struct {
+	QueryTemplate string `mapstructure:"query_template"`
+	Section       string
 }
 
 const sprintNumberPlaceholder = "#SPRINT_NUMBER#"
@@ -57,6 +65,11 @@ func (config *Config) GetSprintLabel(sprintNumber int) string {
 	return replaceSprintNumberPlaceholder(config.LabelTemplate, sprintNumber)
 }
 
+//GetPreviousSprintLabel method
+func (config *Config) GetPreviousSprintLabel(sprintNumber int) string {
+	return replaceSprintNumberPlaceholder(config.LabelTemplate, sprintNumber-1)
+}
+
 //GetBoardName method
 func (config *Config) GetBoardName(sprintNumber int) string {
 	return replaceSprintNumberPlaceholder(config.Board.NameTemplate, sprintNumber)
@@ -65,6 +78,11 @@ func (config *Config) GetBoardName(sprintNumber int) string {
 //GetSwimlineFilter method
 func (config *Config) GetSwimlineFilter(sprintNumber int) string {
 	return replaceSprintNumberPlaceholder(config.Swimline.FilterTemplate, sprintNumber)
+}
+
+//GetSubfilterQuery method
+func (config *Config) GetSubfilterQuery(sprintNumber int) string {
+	return replaceSprintNumberPlaceholder(config.Subfilter.QueryTemplate, sprintNumber)
 }
 
 func replaceSprintNumberPlaceholder(template string, sprintNumber int) string {
