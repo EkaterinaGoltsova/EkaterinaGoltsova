@@ -39,7 +39,6 @@ type swimline struct {
 
 type subfilter struct {
 	QueryTemplate string `mapstructure:"query_template"`
-	Section       string
 }
 
 const sprintNumberPlaceholder = "#SPRINT_NUMBER#"

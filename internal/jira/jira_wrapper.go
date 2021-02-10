@@ -25,8 +25,7 @@ type editBoardFilterRequestParams struct {
 }
 
 type editBoardSubFilterRequestParams struct {
-	Query   string `json:"query"`
-	Section string `json:"section"`
+	Query string `json:"query"`
 }
 
 //StartSprint is a pipeline finction for start a sprint
@@ -202,14 +201,13 @@ func (service *Service) editBoardFilter(sprintNumber int) error {
 
 func (service *Service) editBoardSubFilter(sprintNumber int) error {
 	params := editBoardSubFilterRequestParams{
-		Query:   service.Config.GetSubfilterQuery(sprintNumber),
-		Section: service.Config.Subfilter.Section,
+		Query: service.Config.GetSubfilterQuery(sprintNumber),
 	}
 
 	req, _ := service.Client.NewRequest(
 		"PUT",
 		fmt.Sprintf(
-			"rest/greenhopper/1.0/subqueries/%d/board.kanban.work",
+			"rest/greenhopper/1.0/subqueries/%d/",
 			service.Config.Board.ID,
 		),
 		params,
